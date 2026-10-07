@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Quiz{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>📝 Phishing Awareness Quiz</h1>
+  <p>5 scenario-based questions. Choose the best answer for each.</p>
+</section>
+
+<section class="section">
+  <form method="POST" action="{{ url_for('quiz') }}" id="quiz-form">
+
+    {% for q in questions %}
+    <div class="quiz-card card" id="q-card-{{ q.id }}">
+      <div class="quiz-question-header">
+        <span class="quiz-num">Q{{ loop.index }}</span>
+        <p class="quiz-question-text">{{ q.text }}</p>
+      </div>
+      <div class="quiz-options">
+        {% for key, label in q.options.items() %}
+        <label class="quiz-option" for="q{{ q.id }}_{{ key }}">
+          <input
+            type="radio"
+            name="q{{ q.id }}"
+            id="q{{ q.id }}_{{ key }}"
+            value="{{ key }}"
+            required
+          />
+          <span class="option-letter">{{ key }}</span>
+          <span class="option-text">{{ label }}</span>
+        </label>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="quiz-submit-area">
+      <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+        Submit Answers →
+      </button>
+      <p class="quiz-hint">All 5 questions must be answered before submitting.</p>
+    </div>
+
+  </form>
+</section>
+
+{% endblock %}

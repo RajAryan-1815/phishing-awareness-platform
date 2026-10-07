@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}Awareness Report{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>📊 Awareness Report</h1>
+  <p>Your personal phishing awareness summary.</p>
+</section>
+
+<!-- ── Awareness level ───────────────────────────────────────────────────── -->
+<section class="section">
+  {% if level == 'Good' %}
+  <div class="level-banner level-banner--good">
+    <div class="level-icon">🏆</div>
+    <div>
+      <h2>Awareness Level: <strong>Good</strong></h2>
+      <p>You have a solid understanding of phishing threats.</p>
+    </div>
+  </div>
+  {% elif level == 'Intermediate' %}
+  <div class="level-banner level-banner--intermediate">
+    <div class="level-icon">📈</div>
+    <div>
+      <h2>Awareness Level: <strong>Intermediate</strong></h2>
+      <p>You know the basics — a bit more practice will make you much safer.</p>
+    </div>
+  </div>
+  {% else %}
+  <div class="level-banner level-banner--beginner">
+    <div class="level-icon">🌱</div>
+    <div>
+      <h2>Awareness Level: <strong>Beginner</strong></h2>
+      <p>Start with the Learn section and retake the quiz to improve your score.</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<!-- ── Stats grid ────────────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 class="section-title">📈 Your Statistics</h2>
+  <div class="stats-grid">
+
+    <div class="stat-card {% if latest_quiz and latest_quiz['percentage'] >= 80 %}stat-card--success{% elif latest_quiz %}stat-card--warning{% endif %}">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-value">
+        {% if latest_quiz %}{{ latest_quiz['percentage'] }}%{% else %}—{% endif %}
+      </div>
+      <div class="stat-label">Latest Quiz Score</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📝</div>
+      <div class="stat-value">{{ total_attempts }}</div>
+      <div class="stat-label">Total Quiz Attempts</div>
+    </div>
+
+    <div class="stat-card {% if total_sim_clicks > 0 %}stat-card--danger{% else %}stat-card--success{% endif %}">
+      <div class="stat-icon">🎣</div>
+      <div class="stat-value">{{ total_sim_clicks }}</div>
+      <div class="stat-label">Simulation Clicks</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📚</div>
+      <div class="stat-value">
+        {% if latest_quiz %}
+          {{ latest_quiz['score'] }}/{{ latest_quiz['total'] }}
+        {% else %}
+          —
+        {% endif %}
+      </div>
+      <div class="stat-label">Latest Correct Answers</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Simulation status ─────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="card">
+    <h2>🎣 Simulation Status</h2>
+    {% if total_sim_clicks == 0 %}
+    <div class="status-row status-row--good">
+      <span>✅</span>
+      <span>You have not clicked the simulated phishing link yet. Try the simulation to see how realistic phishing emails look.</span>
+    </div>
+    {% else %}
+    <div class="status-row status-row--warn">
+      <span>⚠️</span>
+      <span>
+        You clicked the simulated phishing link <strong>{{ total_sim_clicks }}</strong>
+        time{{ 's' if total_sim_clicks != 1 }}.
+        Remember: in a real attack that click could have led to credential theft.
+        Review the <a href="{{ url_for('result') }}">red flags explanation</a> again.
+      </span>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ── Recommendations ───────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="card">
+    <h2>💡 Recommendations</h2>
+    {% if not latest_quiz %}
+    <p>Complete the quiz and the simulation to get personalised recommendations.</p>
+    {% else %}
+    <ul class="rec-list">
+      {% for rec in recommendations %}
+      <li>{{ rec }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ── No data state ─────────────────────────────────────────────────────── -->
+{% if not latest_quiz %}
+<section class="section cta-section">
+  <p>Complete the training modules to populate your report.</p>
+  <div class="hero-actions">
+    <a href="{{ url_for('learn') }}"      class="btn btn-primary">📚 Start Learning</a>
+    <a href="{{ url_for('simulation') }}" class="btn btn-danger">🎣 Try Simulation</a>
+    <a href="{{ url_for('quiz') }}"       class="btn btn-outline">📝 Take the Quiz</a>
+  </div>
+</section>
+{% else %}
+<section class="section cta-section">
+  <div class="hero-actions">
+    <a href="{{ url_for('quiz') }}"   class="btn btn-primary">🔁 Retake Quiz</a>
+    <a href="{{ url_for('learn') }}"  class="btn btn-outline">📚 Review Guide</a>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

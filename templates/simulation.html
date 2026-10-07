@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Phishing Simulation{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>🎣 Phishing Simulation</h1>
+  <p>This is a <strong>safe, educational exercise</strong>. No real data is collected.</p>
+</section>
+
+<!-- ── Simulation notice ─────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="card notice-card">
+    <span class="badge badge--info">🔬 Training Exercise</span>
+    <p>
+      Below is a <em>realistic-looking</em> phishing email. Your task is to
+      decide whether you would click the link. Whatever you choose, you will
+      see a full explanation of the red flags afterwards.
+    </p>
+    <p>
+      <strong>Nothing harmful will happen.</strong> No password is asked for.
+      No personal data is collected. Only a click event is recorded for your
+      awareness report.
+    </p>
+  </div>
+</section>
+
+<!-- ── Fake email ────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="email-wrapper">
+
+    <!-- Email header bar (mimics an email client) -->
+    <div class="email-client-bar">
+      <div class="email-client-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <span class="email-client-title">📧 Inbox</span>
+    </div>
+
+    <div class="fake-email">
+
+      <div class="email-header">
+        <div class="email-field">
+          <span class="email-label">From:</span>
+          <span class="email-value">Security Team &lt;security-alerts@accounts-googIe-verify.com&gt;</span>
+        </div>
+        <div class="email-field">
+          <span class="email-label">To:</span>
+          <span class="email-value">you@example.com</span>
+        </div>
+        <div class="email-field">
+          <span class="email-label">Subject:</span>
+          <span class="email-value email-subject">⚠️ URGENT: Your account requires immediate security verification</span>
+        </div>
+        <div class="email-field">
+          <span class="email-label">Date:</span>
+          <span class="email-value" id="sim-date"></span>
+        </div>
+      </div>
+
+      <div class="email-body">
+        <p>Dear Google User,</p>
+
+        <p>
+          We have detected <strong>suspicious sign-in activity</strong> on your account
+          from an unrecognised device in another country. To protect your account,
+          you <strong>must verify your identity within 24 hours</strong> or your
+          account will be <strong>permanently suspended</strong>.
+        </p>
+
+        <div class="email-alert-box">
+          <p>📍 Sign-in attempt detected from: <strong>Unknown location</strong></p>
+          <p>🕐 Time remaining to verify: <strong>23:47:12</strong></p>
+        </div>
+
+        <p>
+          Please click the button below to verify your account and restore full
+          access immediately.
+        </p>
+
+        <!-- The "phishing link" — clicking it records an event and shows the training page -->
+        <div style="text-align:center; margin: 2rem 0;">
+          <a href="{{ url_for('simulation_click') }}" class="btn btn-email-verify">
+            ✅ Verify My Account Now
+          </a>
+        </div>
+
+        <p style="font-size:0.85rem; color:#666;">
+          If you do not verify within the stated time, your account access will
+          be revoked and you will need to contact our support centre.
+        </p>
+
+        <hr style="margin:1.5rem 0; border-color:#eee;">
+
+        <p style="font-size:0.8rem; color:#888;">
+          Google Security Team<br>
+          1600 Amphitheatre Pkwy, Mountain View, CA 94043
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── What would you do? ────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="card">
+    <h2>🤔 What would you do with this email?</h2>
+    <p>Click the button above to see what happens — or skip straight to the explanation.</p>
+    <div class="hero-actions" style="margin-top:1rem">
+      <a href="{{ url_for('result') }}" class="btn btn-outline">🔍 Skip – Show Me the Red Flags</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Display today's date in the fake email header
+  const d = new Date();
+  document.getElementById('sim-date').textContent = d.toDateString();
+</script>
+
+{% endblock %}

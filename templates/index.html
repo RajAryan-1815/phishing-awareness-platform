@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">🔐 Cybersecurity Education</span>
+    <h1>Phishing Awareness<br>Training Platform</h1>
+    <p class="hero-sub">
+      Learn to recognise phishing attacks, test your knowledge with a safe
+      simulation, and measure your awareness level — all in one place.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ url_for('learn') }}"      class="btn btn-primary">📚 Start Learning</a>
+      <a href="{{ url_for('simulation') }}" class="btn btn-danger">🎣 Try Simulation</a>
+      <a href="{{ url_for('quiz') }}"       class="btn btn-outline">📝 Take the Quiz</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── What is phishing? ─────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="card info-card">
+    <h2>⚠️ What is Phishing?</h2>
+    <p>
+      Phishing is a type of cyber attack where criminals <strong>impersonate trusted
+      organisations</strong> (banks, tech companies, government agencies) to trick
+      you into revealing sensitive information such as passwords, credit card
+      numbers or personal details.
+    </p>
+    <p>
+      Attacks arrive via <strong>email, SMS, phone calls</strong> or fake websites.
+      They often use <em>urgency, fear or tempting offers</em> to bypass your
+      critical thinking.
+    </p>
+    <p>
+      <strong>The best defence is awareness.</strong> This platform walks you
+      through real-world techniques so you can spot and avoid them.
+    </p>
+  </div>
+</section>
+
+<!-- ── Statistics ────────────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 class="section-title">📊 Platform Statistics</h2>
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon">📝</div>
+      <div class="stat-value">{{ total_quizzes }}</div>
+      <div class="stat-label">Quiz Attempts</div>
+    </div>
+
+    <div class="stat-card stat-card--danger">
+      <div class="stat-icon">🎣</div>
+      <div class="stat-value">{{ total_sim_clicks }}</div>
+      <div class="stat-label">Simulation Clicks</div>
+    </div>
+
+    <div class="stat-card stat-card--success">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-value">{{ avg_score }}%</div>
+      <div class="stat-label">Average Quiz Score</div>
+    </div>
+
+    <div class="stat-card stat-card--info">
+      <div class="stat-icon">📚</div>
+      <div class="stat-value">8</div>
+      <div class="stat-label">Topics Covered</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Feature cards ─────────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 class="section-title">🚀 How It Works</h2>
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">📚</div>
+      <h3>1. Learn</h3>
+      <p>Read concise, example-based guides on the most common phishing techniques used by attackers today.</p>
+      <a href="{{ url_for('learn') }}" class="btn btn-sm btn-primary">Go to Learn →</a>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎣</div>
+      <h3>2. Simulation</h3>
+      <p>Experience a <em>safe, realistic</em> phishing email. No data collected — purely educational.</p>
+      <a href="{{ url_for('simulation') }}" class="btn btn-sm btn-danger">Try Simulation →</a>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📝</div>
+      <h3>3. Quiz</h3>
+      <p>Test your knowledge with 5 scenario-based questions and see instant explanations for each answer.</p>
+      <a href="{{ url_for('quiz') }}" class="btn btn-sm btn-outline">Take Quiz →</a>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>4. Report</h3>
+      <p>View your awareness level, quiz history, and personalised recommendations to improve.</p>
+      <a href="{{ url_for('report') }}" class="btn btn-sm btn-outline">See Report →</a>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

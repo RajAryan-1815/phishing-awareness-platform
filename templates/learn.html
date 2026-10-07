@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+{% block title %}Learn{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>📚 Phishing Awareness Guide</h1>
+  <p>Eight essential topics every internet user should know.</p>
+</section>
+
+<!-- ── Table of contents ─────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="toc-card card">
+    <h2>📋 Contents</h2>
+    <ol class="toc-list">
+      <li><a href="#what-is-phishing">What is Phishing?</a></li>
+      <li><a href="#techniques">Common Phishing Techniques</a></li>
+      <li><a href="#suspicious-links">Suspicious Links &amp; URLs</a></li>
+      <li><a href="#urgency">Urgent / Threatening Language</a></li>
+      <li><a href="#fake-logins">Fake Login Pages</a></li>
+      <li><a href="#sender-check">Checking Sender Addresses</a></li>
+      <li><a href="#attachments">Dangerous Attachments</a></li>
+      <li><a href="#stay-safe">How to Stay Safe</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── 1. What is phishing ───────────────────────────────────────────────── -->
+<section class="section learn-section" id="what-is-phishing">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">01</span>
+      <h2>What is Phishing?</h2>
+    </div>
+    <p>
+      Phishing is a <strong>social engineering attack</strong> where cybercriminals
+      pretend to be trustworthy entities — banks, government agencies, tech companies,
+      or even your boss — to trick you into revealing sensitive information or taking
+      a harmful action.
+    </p>
+    <p>
+      The word "phishing" is a deliberate misspelling of "fishing" because attackers
+      <em>cast a wide net</em> hoping victims will "bite" the hook.
+    </p>
+    <div class="example-box example-box--danger">
+      <strong>🎣 Real-world example:</strong>
+      You receive an email claiming to be from your bank saying your account has
+      been locked. You click a link, land on a convincing fake bank page, and type
+      in your login details — which go straight to the attacker.
+    </div>
+  </div>
+</section>
+
+<!-- ── 2. Common techniques ──────────────────────────────────────────────── -->
+<section class="section learn-section" id="techniques">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">02</span>
+      <h2>Common Phishing Techniques</h2>
+    </div>
+    <div class="technique-grid">
+      <div class="technique-item">
+        <span class="technique-icon">📧</span>
+        <div>
+          <strong>Email Phishing</strong>
+          <p>Mass emails sent to thousands of addresses impersonating a trusted brand.</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <span class="technique-icon">🎯</span>
+        <div>
+          <strong>Spear Phishing</strong>
+          <p>Targeted attacks using your name, employer or recent activity to seem credible.</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <span class="technique-icon">📱</span>
+        <div>
+          <strong>Smishing (SMS)</strong>
+          <p>Phishing delivered via text message — "Your parcel could not be delivered, click here."</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <span class="technique-icon">📞</span>
+        <div>
+          <strong>Vishing (Voice)</strong>
+          <p>Phone calls from fake "bank security teams" or "Microsoft support" agents.</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <span class="technique-icon">🐋</span>
+        <div>
+          <strong>Whaling</strong>
+          <p>Spear phishing aimed at executives (CEOs, CFOs) to authorise large wire transfers.</p>
+        </div>
+      </div>
+      <div class="technique-item">
+        <span class="technique-icon">🔗</span>
+        <div>
+          <strong>Clone Phishing</strong>
+          <p>A legitimate email is copied, its links replaced with malicious ones, then re-sent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 3. Suspicious links ───────────────────────────────────────────────── -->
+<section class="section learn-section" id="suspicious-links">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">03</span>
+      <h2>Suspicious Links &amp; URLs</h2>
+    </div>
+    <p>
+      Links are the most common delivery mechanism for phishing attacks. Attackers
+      manipulate URLs so they <em>look</em> legitimate at a glance.
+    </p>
+    <ul class="check-list">
+      <li><strong>Typosquatting</strong> — <code>paypa1.com</code> (digit 1 instead of letter l)</li>
+      <li><strong>Subdomain spoofing</strong> — <code>paypal.com.evil-site.com</code> (real domain is <em>evil-site.com</em>)</li>
+      <li><strong>URL shorteners</strong> — <code>bit.ly/abc123</code> hides the true destination</li>
+      <li><strong>Homograph attacks</strong> — Unicode characters that look identical to Latin letters</li>
+    </ul>
+    <div class="example-box example-box--warning">
+      <strong>💡 Tip:</strong> Before clicking any link, <em>hover over it</em> (desktop) or
+      long-press it (mobile) to preview the real URL. If the domain looks wrong — don't click.
+    </div>
+  </div>
+</section>
+
+<!-- ── 4. Urgency ────────────────────────────────────────────────────────── -->
+<section class="section learn-section" id="urgency">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">04</span>
+      <h2>Urgent / Threatening Language</h2>
+    </div>
+    <p>
+      Attackers exploit <strong>fear and urgency</strong> to make you act before
+      you think. Genuine organisations give reasonable notice and do not threaten
+      immediate account deletion.
+    </p>
+    <div class="red-flags-grid">
+      <div class="red-flag">🚨 "Your account will be suspended in 24 hours!"</div>
+      <div class="red-flag">🔒 "Unusual sign-in detected — verify NOW"</div>
+      <div class="red-flag">💸 "Your payment failed — update immediately"</div>
+      <div class="red-flag">⚠️ "Legal action will be taken if you do not respond"</div>
+    </div>
+    <div class="example-box example-box--warning">
+      <strong>💡 Rule of thumb:</strong> The more urgent an email sounds, the more suspicious
+      you should be. Pause, breathe, and verify through the official website.
+    </div>
+  </div>
+</section>
+
+<!-- ── 5. Fake login pages ───────────────────────────────────────────────── -->
+<section class="section learn-section" id="fake-logins">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">05</span>
+      <h2>Fake Login Pages</h2>
+    </div>
+    <p>
+      Attackers build pixel-perfect copies of Gmail, banking, or social-media login
+      pages. When you type your credentials, they are sent to the attacker — not the
+      real service.
+    </p>
+    <ul class="check-list">
+      <li>Always check the <strong>URL bar</strong> — the domain must be exactly right</li>
+      <li>A padlock (HTTPS) does NOT mean the page is legitimate — phishing sites use it too</li>
+      <li>Use a <strong>password manager</strong> — it won't auto-fill on a fake domain</li>
+      <li>Bookmark important sites and navigate from bookmarks, never from email links</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── 6. Sender address ─────────────────────────────────────────────────── -->
+<section class="section learn-section" id="sender-check">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">06</span>
+      <h2>Checking Sender Addresses</h2>
+    </div>
+    <p>
+      Display names can say anything. The <strong>actual email address</strong> is
+      what matters.
+    </p>
+    <div class="comparison-grid">
+      <div class="comparison-item comparison-item--bad">
+        <span>❌ Suspicious</span>
+        <code>support@googIe-help.com</code>
+        <small>Capital I instead of lowercase l</small>
+      </div>
+      <div class="comparison-item comparison-item--bad">
+        <span>❌ Suspicious</span>
+        <code>noreply@amazon.account-verify.net</code>
+        <small>Real domain is account-verify.net, not amazon.com</small>
+      </div>
+      <div class="comparison-item comparison-item--good">
+        <span>✅ Legitimate</span>
+        <code>support@amazon.com</code>
+        <small>Official Amazon domain</small>
+      </div>
+      <div class="comparison-item comparison-item--good">
+        <span>✅ Legitimate</span>
+        <code>no-reply@accounts.google.com</code>
+        <small>Subdomain of the official google.com domain</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 7. Attachments ────────────────────────────────────────────────────── -->
+<section class="section learn-section" id="attachments">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">07</span>
+      <h2>Dangerous Attachments</h2>
+    </div>
+    <p>
+      Malicious files are disguised as invoices, CVs, or shipping notices. Opening
+      them can install malware silently.
+    </p>
+    <div class="file-type-grid">
+      <div class="file-type file-type--danger"><code>.exe .bat .cmd</code><span>Direct executables</span></div>
+      <div class="file-type file-type--danger"><code>.docx .xlsx</code><span>Office files with macros</span></div>
+      <div class="file-type file-type--warning"><code>.pdf</code><span>Can contain malicious JS</span></div>
+      <div class="file-type file-type--warning"><code>.zip .rar .iso</code><span>May hide executables</span></div>
+    </div>
+    <ul class="check-list" style="margin-top:1rem">
+      <li>Never enable macros in Office files from unknown senders</li>
+      <li>Scan attachments with antivirus before opening</li>
+      <li>Be cautious even with known senders — their account may be compromised</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── 8. Stay safe ──────────────────────────────────────────────────────── -->
+<section class="section learn-section" id="stay-safe">
+  <div class="card learn-card">
+    <div class="learn-card-header">
+      <span class="learn-num">08</span>
+      <h2>How to Stay Safe</h2>
+    </div>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <span class="safe-icon">🔑</span>
+        <div>
+          <strong>Use Strong, Unique Passwords</strong>
+          <p>Use a password manager to generate and store a different password for every site.</p>
+        </div>
+      </div>
+      <div class="safe-item">
+        <span class="safe-icon">📲</span>
+        <div>
+          <strong>Enable Multi-Factor Authentication (MFA)</strong>
+          <p>Even if attackers steal your password, they cannot log in without your second factor.</p>
+        </div>
+      </div>
+      <div class="safe-item">
+        <span class="safe-icon">🔍</span>
+        <div>
+          <strong>Verify Before You Click</strong>
+          <p>Hover over links, inspect sender addresses, and navigate directly to official sites.</p>
+        </div>
+      </div>
+      <div class="safe-item">
+        <span class="safe-icon">🛡️</span>
+        <div>
+          <strong>Keep Software Updated</strong>
+          <p>Security patches close vulnerabilities that phishing payloads try to exploit.</p>
+        </div>
+      </div>
+      <div class="safe-item">
+        <span class="safe-icon">📢</span>
+        <div>
+          <strong>Report Suspicious Messages</strong>
+          <p>Use your email client's "Report Phishing" button — it helps protect everyone.</p>
+        </div>
+      </div>
+      <div class="safe-item">
+        <span class="safe-icon">🧠</span>
+        <div>
+          <strong>Trust Your Instincts</strong>
+          <p>If something feels off, stop. Take a moment to verify before acting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────────────── -->
+<section class="section cta-section">
+  <p>Ready to test what you've learned?</p>
+  <div class="hero-actions">
+    <a href="{{ url_for('simulation') }}" class="btn btn-danger">🎣 Try the Simulation</a>
+    <a href="{{ url_for('quiz') }}"       class="btn btn-primary">📝 Take the Quiz</a>
+  </div>
+</section>
+
+{% endblock %}

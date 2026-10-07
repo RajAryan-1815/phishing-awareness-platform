@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Quiz Result{% endblock %}
+
+{% block content %}
+
+<!-- ── Score banner ──────────────────────────────────────────────────────── -->
+<section class="section">
+  {% if percentage >= 80 %}
+  <div class="score-banner score-banner--great">
+    <div class="score-circle score-circle--great">{{ percentage }}%</div>
+    <div>
+      <h2>🏆 Excellent! {{ score }}/{{ total }} correct</h2>
+      <p>You have a strong understanding of phishing threats. Keep it up!</p>
+    </div>
+  </div>
+  {% elif percentage >= 60 %}
+  <div class="score-banner score-banner--good">
+    <div class="score-circle score-circle--good">{{ percentage }}%</div>
+    <div>
+      <h2>👍 Good work! {{ score }}/{{ total }} correct</h2>
+      <p>You know the basics. Review the explanations below to fill in the gaps.</p>
+    </div>
+  </div>
+  {% else %}
+  <div class="score-banner score-banner--needs-work">
+    <div class="score-circle score-circle--needs-work">{{ percentage }}%</div>
+    <div>
+      <h2>📚 Keep learning! {{ score }}/{{ total }} correct</h2>
+      <p>Don't worry — review the answers and explanations below, then try again.</p>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<!-- ── Answer review ─────────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 class="section-title">📋 Answer Review</h2>
+
+  {% for q in questions %}
+  {% set chosen = user_answers.get(q.id | string, '') %}
+  {% set is_correct = (chosen == q.answer) %}
+
+  <div class="answer-card card {% if is_correct %}answer-card--correct{% else %}answer-card--wrong{% endif %}">
+    <div class="answer-card-header">
+      <span class="quiz-num">Q{{ loop.index }}</span>
+      {% if is_correct %}
+        <span class="answer-badge answer-badge--correct">✅ Correct</span>
+      {% else %}
+        <span class="answer-badge answer-badge--wrong">❌ Incorrect</span>
+      {% endif %}
+    </div>
+
+    <p class="quiz-question-text">{{ q.text }}</p>
+
+    <div class="answer-options">
+      {% for key, label in q.options.items() %}
+      <div class="answer-option
+        {% if key == q.answer %}answer-option--correct{% endif %}
+        {% if key == chosen and not is_correct %}answer-option--chosen-wrong{% endif %}
+      ">
+        <span class="option-letter">{{ key }}</span>
+        <span>{{ label }}</span>
+        {% if key == q.answer %}<span class="answer-tag">✓ Correct answer</span>{% endif %}
+        {% if key == chosen and not is_correct %}<span class="answer-tag answer-tag--wrong">Your answer</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="answer-explanation">
+      <strong>💡 Explanation:</strong> {{ q.explanation }}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────────────── -->
+<section class="section cta-section">
+  <div class="hero-actions">
+    <a href="{{ url_for('quiz') }}"   class="btn btn-primary">🔁 Retake Quiz</a>
+    <a href="{{ url_for('report') }}" class="btn btn-outline">📊 View My Report</a>
+    <a href="{{ url_for('learn') }}"  class="btn btn-outline">📚 Review the Guide</a>
+  </div>
+</section>
+
+{% endblock %}

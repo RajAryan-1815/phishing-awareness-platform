@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block title %}Simulation Result{% endblock %}
+
+{% block content %}
+
+<!-- ── Banner ────────────────────────────────────────────────────────────── -->
+{% if clicked %}
+<section class="section">
+  <div class="alert-banner alert-banner--danger">
+    <div class="alert-banner-icon">🎣</div>
+    <div>
+      <h2>You clicked the phishing link!</h2>
+      <p>
+        In a real attack, you would now be on a fake login page designed to
+        steal your password. <strong>Don't worry — this was just a training
+        exercise.</strong> Read on to understand exactly what made this email
+        suspicious.
+      </p>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="section">
+  <div class="alert-banner alert-banner--success">
+    <div class="alert-banner-icon">🛡️</div>
+    <div>
+      <h2>Good call — you stayed cautious!</h2>
+      <p>
+        Whether you recognised the red flags or just felt something was off,
+        pausing before clicking is exactly the right instinct. Read on to see
+        all the warning signs in that email.
+      </p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ── What just happened ────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="card">
+    <h2>🔍 What Was That Email?</h2>
+    <p>
+      That was a <strong>simulated phishing email</strong> — a fake message
+      designed to mimic a real Google security alert. It contained multiple
+      classic phishing techniques used in real-world attacks every day.
+    </p>
+    <p>
+      In a real phishing attack, clicking "Verify My Account Now" would take
+      you to a <em>fake Google login page</em>. Any password you typed there
+      would go directly to the attacker — <strong>not to Google</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ── Red flags ─────────────────────────────────────────────────────────── -->
+<section class="section">
+  <h2 class="section-title">🚩 Red Flags in That Email</h2>
+  <div class="red-flag-list">
+
+    <div class="red-flag-item">
+      <div class="red-flag-num">1</div>
+      <div class="red-flag-content">
+        <h3>Misspelled sender domain</h3>
+        <p>
+          The "From" address was
+          <code>security-alerts@accounts-googIe-verify.com</code>.
+          Look closely — it says <strong>googIe</strong> (capital I) not
+          <strong>google</strong> (lowercase L). The actual domain is
+          <em>accounts-googIe-verify.com</em> — nothing to do with Google.
+        </p>
+      </div>
+    </div>
+
+    <div class="red-flag-item">
+      <div class="red-flag-num">2</div>
+      <div class="red-flag-content">
+        <h3>Extreme urgency and threats</h3>
+        <p>
+          "Verify within 24 hours or your account will be permanently
+          suspended." Real Google security emails give you time, link to
+          Google's own domain, and never threaten immediate permanent
+          suspension via a single email.
+        </p>
+      </div>
+    </div>
+
+    <div class="red-flag-item">
+      <div class="red-flag-num">3</div>
+      <div class="red-flag-content">
+        <h3>Generic greeting</h3>
+        <p>
+          "Dear Google User" — Google knows your name. Legitimate emails
+          from Google address you by the name on your account.
+        </p>
+      </div>
+    </div>
+
+    <div class="red-flag-item">
+      <div class="red-flag-num">4</div>
+      <div class="red-flag-content">
+        <h3>Suspicious link URL</h3>
+        <p>
+          The "Verify My Account Now" button would lead to a domain that is
+          not google.com. Always hover over links to preview the real
+          destination before clicking.
+        </p>
+      </div>
+    </div>
+
+    <div class="red-flag-item">
+      <div class="red-flag-num">5</div>
+      <div class="red-flag-content">
+        <h3>Pressure to act immediately</h3>
+        <p>
+          A countdown timer creates panic and stops you from thinking
+          critically. This is a deliberate psychological manipulation
+          technique used in almost every phishing attack.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── What to do in real life ───────────────────────────────────────────── -->
+<section class="section">
+  <div class="card card--info">
+    <h2>✅ What to Do With a Real Email Like This</h2>
+    <ol class="numbered-list">
+      <li><strong>Do not click any links</strong> in the email.</li>
+      <li>Open a new browser tab and <strong>type the official website address manually</strong> (e.g., google.com).</li>
+      <li>Log in through the official site and check if there are any real security alerts.</li>
+      <li><strong>Report the email</strong> as phishing in your email client.</li>
+      <li>Delete the email.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── Privacy note ──────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="card card--muted">
+    <h2>🔒 Privacy Note</h2>
+    <p>
+      During this simulation <strong>no passwords, email addresses, or any
+      personal information were collected</strong>. The only data recorded was
+      a simple anonymous click event used to generate your awareness report.
+      This platform stores nothing that could identify you.
+    </p>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────────────── -->
+<section class="section cta-section">
+  <p>Reinforce what you've learned:</p>
+  <div class="hero-actions">
+    <a href="{{ url_for('quiz') }}"   class="btn btn-primary">📝 Take the Quiz</a>
+    <a href="{{ url_for('learn') }}"  class="btn btn-outline">📚 Review the Guide</a>
+    <a href="{{ url_for('report') }}" class="btn btn-outline">📊 View My Report</a>
+  </div>
+</section>
+
+{% endblock %}

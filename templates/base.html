@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}PhishGuard{% endblock %} – Phishing Awareness</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <!-- ── Navigation bar ───────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a class="nav-brand" href="{{ url_for('index') }}">🛡️ PhishGuard</a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}"       class="{% if request.endpoint == 'index'      %}active{% endif %}">Dashboard</a></li>
+      <li><a href="{{ url_for('learn') }}"        class="{% if request.endpoint == 'learn'       %}active{% endif %}">Learn</a></li>
+      <li><a href="{{ url_for('simulation') }}"   class="{% if request.endpoint == 'simulation'  %}active{% endif %}">Simulation</a></li>
+      <li><a href="{{ url_for('quiz') }}"         class="{% if request.endpoint == 'quiz'         %}active{% endif %}">Quiz</a></li>
+      <li><a href="{{ url_for('report') }}"       class="{% if request.endpoint == 'report'       %}active{% endif %}">Report</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+  </nav>
+
+  <!-- ── Page content ─────────────────────────────────────────────── -->
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>🛡️ PhishGuard &mdash; Phishing Awareness Training Platform &mdash; Educational Use Only</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
